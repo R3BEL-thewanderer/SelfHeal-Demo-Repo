@@ -14,10 +14,7 @@ def get_last_processed_id(batch: List[int]) -> int:
     if not batch:
         raise ValueError("Batch cannot be empty")
 
-    # INTENTIONAL DEMO BUG: Off-by-one indexing error.
-    # len(batch) is out of bounds for 0-indexed lists; raises IndexError.
-    # Validation run: Phase 10C - 2026-09-25T10:48:31.716Z
-    return batch[len(batch)]
+    return batch[-1]
 
 
 def calculate_discounted_total(prices: List[float], discount_rate: float) -> float:
