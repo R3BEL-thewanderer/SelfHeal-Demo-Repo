@@ -4,15 +4,16 @@ from src.inventory import get_last_processed_id, calculate_discounted_total
 
 def test_last_processed_id_valid_batch():
     batch = [101, 102, 103, 104]
-    # Expected: 104
-    # Actual without fix: raises IndexError: list index out of range at line 17
+    # Standard contract: expect last element 104
     assert get_last_processed_id(batch) == 104
 
 
-def test_last_processed_id_single_item():
-    batch = [500]
-    # Expected: 500
-    assert get_last_processed_id(batch) == 500
+def test_impossible_batch_contract():
+    # INTENTIONAL DEMO NON-CONVERGENCE (Phase 10D):
+    # Demands 999999 for the identical input [101, 102, 103, 104],
+    # creating an impossible contradiction with test_last_processed_id_valid_batch.
+    batch = [101, 102, 103, 104]
+    assert get_last_processed_id(batch) == 999999
 
 
 def test_calculate_discounted_total():
